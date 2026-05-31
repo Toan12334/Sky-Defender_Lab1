@@ -1,23 +1,53 @@
 using UnityEngine;
+using UnityEngine.InputSystem; // Vũ khí bí mật cho Unity 6
 
 public class PlayerMovement : MonoBehaviour
 {
-    // public giúp bạn có thể chỉnh sửa tốc độ trực tiếp trên Unity Editor
+    [Header("Di Chuyển")]
     public float speed = 5f;
+    public float jumpForce = 10f;
 
-    // Update được gọi mỗi khung hình (frame)
+    [Header("Kiểm Tra Mặt Đất")]
+    public Transform groundCheck;
+    public LayerMask groundLayer;
+    public float checkRadius = 0.2f;
+
+    private Rigidbody2D rb;
+    private bool isGrounded;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     void Update()
     {
-        // 1. Nhận tín hiệu từ bàn phím (A/D, Mũi tên Trái/Phải cho trục ngang; W/S, Mũi tên Lên/Xuống cho trục dọc)
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        // Tránh lỗi nếu máy tính không nhận ra bàn phím
+        if (Keyboard.current == null) return;
 
-        // 2. Tạo một Vector3 xác định hướng đi. (X: ngang, Y: cao/nhảy, Z: dọc)
-        // Ở đây giả sử game 3D đi trên mặt phẳng nên Y = 0. Nếu game 2D, thay moveVertical vào trục Y.
-        Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical);
+        // 1. Nhận phím Trái/Phải (Dùng hệ thống mới)
+        float move = 0f;
+        if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed) move = 1f;
+        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed) move = -1f;
 
-        // 3. Di chuyển nhân vật
-        // Time.deltaTime giúp tốc độ di chuyển ổn định, không bị phụ thuộc vào độ mạnh yếu của máy tính
-        transform.Translate(movement * speed * Time.deltaTime);
+        rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
+
+        // 2. Kiểm tra chạm đất
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+
+        // 3. Nhảy bằng phím Space (Dùng hệ thống mới)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+        }
     }
 }
