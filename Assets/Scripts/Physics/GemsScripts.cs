@@ -2,7 +2,7 @@
 
 public class GemCollect : MonoBehaviour
 {
-    public int scoreValue = 10; // Điểm số viên này mang lại (Xanh/Đỏ có thể chỉnh khác nhau)
+    
     public AudioClip collectSound; // Kéo file âm thanh (.mp3/.wav) vào đây
     public GameObject effectPrefab; // Kéo Prefab Particle Effect vào nếu có
 
