@@ -11,10 +11,18 @@ public class FinishGate : MonoBehaviour
         // Kiểm tra xem đối tượng chạm vào cổng có Tag là Player hay không
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Chúc mừng! Bạn đã đến đích và chiến thắng!");
+            // Tìm tất cả các viên ngọc còn lại trong màn chơi
+            GemCollect[] remainingGems = FindObjectsOfType<GemCollect>();
 
-            // Lệnh chuyển sang Scene chiến thắng
-            SceneManager.LoadScene(victorySceneName);
+            if (remainingGems.Length == 0)
+            {
+                Debug.Log("Chúc mừng! Bạn đã ăn hết ngọc và hoàn thành màn chơi!");
+                SceneManager.LoadScene(victorySceneName);
+            }
+            else
+            {
+                Debug.Log($"Bạn chưa thể qua màn! Cần thu thập thêm {remainingGems.Length} viên ngọc nữa.");
+            }
         }
     }
 }

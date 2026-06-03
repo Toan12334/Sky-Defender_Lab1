@@ -2,9 +2,9 @@
 
 public class GemCollect : MonoBehaviour
 {
-    
     public AudioClip collectSound; // Kéo file âm thanh (.mp3/.wav) vào đây
     public GameObject effectPrefab; // Kéo Prefab Particle Effect vào nếu có
+    public int scoreValue; // Số điểm cộng khi ăn ngọc (cấu hình trong Unity Inspector cho từng loại ngọc)
 
     private AudioSource audioSource;
 
@@ -30,7 +30,11 @@ public class GemCollect : MonoBehaviour
 
     void Collect()
     {
-        
+        // 1. Cộng điểm thông qua GameManager Instance
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.AddScore(scoreValue);
+        }
 
         // 2. Tạo hiệu ứng Particle (nếu có)
         if (effectPrefab != null)
