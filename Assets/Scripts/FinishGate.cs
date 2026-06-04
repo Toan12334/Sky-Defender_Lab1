@@ -1,10 +1,15 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class FinishGate : MonoBehaviour
 {
-    // Tên của Cảnh chiến thắng mà Leader (Thành viên 1) đặt trong Build Settings
-    [SerializeField] private string victorySceneName = "Victory";
+    // Cờ static để DoorScripts kiểm tra: đã validate (hết ngọc) chưa
+    public static bool isValidated = false;
+
+    private void Start()
+    {
+        // Reset lại mỗi khi vào màn mới
+        isValidated = false;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,8 +21,8 @@ public class FinishGate : MonoBehaviour
 
             if (remainingGems.Length == 0)
             {
-                Debug.Log("Chúc mừng! Bạn đã ăn hết ngọc và hoàn thành màn chơi!");
-                SceneManager.LoadScene(victorySceneName);
+                isValidated = true;
+                Debug.Log("Đã ăn hết ngọc! Cổng đã được mở khóa. Hãy đến cửa (Door) để qua màn!");
             }
             else
             {
