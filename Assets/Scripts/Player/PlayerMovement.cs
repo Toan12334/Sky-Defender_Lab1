@@ -33,12 +33,20 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
 
         // 2. Kiểm tra chạm đất
+        // 2. Kiểm tra chạm đất
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+        // IN RA ĐỂ XEM CÓ THẬT SỰ CHẠM ĐẤT KHÔNG
+        Debug.Log(gameObject.name + " - Trạng thái chạm đất: " + isGrounded);
 
-        // 3. Nhảy bằng phím Space (Dùng hệ thống mới)
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
+        // 3. Nhảy bằng phím Space
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            Debug.Log("Đã nhận được tín hiệu bấm phím Space!");
+            if (isGrounded)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                Debug.Log("Lệnh nhảy đã kích hoạt với lực: " + jumpForce);
+            }
         }
     }
 
