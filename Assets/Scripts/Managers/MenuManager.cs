@@ -14,13 +14,13 @@ public class MenuManager : MonoBehaviour
     // Gán hàm này vào Event OnClick của nút Start
     public void OnClickStart()
     {
-        sceneLoader.LoadSceneByName("Gameplay");
+        sceneLoader.LoadSceneByName("Gameplay1");
     }
 
     // Gán hàm này vào nút Restart
     public void OnClickRestart()
     {
-        sceneLoader.LoadSceneByName("Gameplay");
+        sceneLoader.LoadSceneByName("Gameplay1");
     }
 
     // Gán hàm này vào nút MainMenu

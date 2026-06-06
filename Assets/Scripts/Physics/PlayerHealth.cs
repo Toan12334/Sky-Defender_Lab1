@@ -2,23 +2,12 @@
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int currentHealth = 3;
-
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        Debug.Log("Player bị trừ máu! Máu còn: " + currentHealth);
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
+    private GameManager manager=new GameManager();
+    private SceneLoader loader = new SceneLoader();
     public void Die()
     {
-        Debug.Log("Player đã chết!");
-        // Thêm code xử lý khi chết ở đây (ví dụ: Load lại scene, hiện Panel GameOver, chạy anim chết...)
-        // UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        manager.TakeDamage(100);
+        loader.LoadSceneByName("GameOver");
+        return;
     }
 }
