@@ -4529,6 +4529,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8103be1b1e6c4445ade076ca580dad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  manager: {fileID: 0}
+  loader: {fileID: 0}
 --- !u!1001 &634787317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6441,26 +6443,13 @@ PrefabInstance:
       addedObject: {fileID: 841526327}
     - targetCorrespondingSourceObject: {fileID: 1484105211443516, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 841526326}
+      addedObject: {fileID: 841526328}
   m_SourcePrefab: {fileID: 100100000, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
 --- !u!4 &841526325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4935685261531296, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
   m_PrefabInstance: {fileID: 841526324}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &841526326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 61354341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf73c635c6341c945af6ce9cc90501db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrapDamage
-  manager: {fileID: 0}
 --- !u!61 &841526327
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6507,6 +6496,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.366745, y: 5.0440526}
   m_EdgeRadius: 0
+--- !u!114 &841526328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61354341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd1c685565361c4fa964cc214777146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaterScripts
+  manager: {fileID: 1118447925}
 --- !u!1 &858748824
 GameObject:
   m_ObjectHideFlags: 0
@@ -8799,31 +8801,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4935685261531296, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.657
+      value: 23.657003
       objectReference: {fileID: 0}
     - target: {fileID: 4935685261531296, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.6099997
+      value: 3.6098442
       objectReference: {fileID: 0}
     - target: {fileID: 4935685261531296, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 1.5296504
       objectReference: {fileID: 0}
     - target: {fileID: 4935685261531296, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99995124
       objectReference: {fileID: 0}
     - target: {fileID: 4935685261531296, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.0069823624
       objectReference: {fileID: 0}
     - target: {fileID: 4935685261531296, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.0069823624
       objectReference: {fileID: 0}
     - target: {fileID: 4935685261531296, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.000048755755
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935685261531296, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935685261531296, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935685261531296, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.011
       objectReference: {fileID: 0}
     - target: {fileID: 212109071524410444, guid: 4fcabf5592dbd8e4eb226c8b14d15e49, type: 3}
       propertyPath: m_Color.b
@@ -13126,6 +13140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8103be1b1e6c4445ade076ca580dad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  manager: {fileID: 0}
+  loader: {fileID: 0}
 --- !u!1 &1605671191
 GameObject:
   m_ObjectHideFlags: 0
