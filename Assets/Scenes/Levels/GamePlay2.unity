@@ -8376,13 +8376,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990910648}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.38, y: 13.9, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.99997395, w: -0.0072181434}
+  m_LocalPosition: {x: 25.4, y: 22.85, z: 0}
   m_LocalScale: {x: 0.7289341, y: 0.8594256, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 648523024}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180.827}
 --- !u!95 &990910650
 Animator:
   serializedVersion: 7
@@ -14915,7 +14915,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1741961500}
   - component: {fileID: 1741961501}
-  - component: {fileID: 1741961502}
   - component: {fileID: 1741961504}
   - component: {fileID: 1741961503}
   m_Layer: 6
@@ -14999,52 +14998,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &1741961502
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741961499}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -0.5, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 1, y: 0.5}
-    oldSize: {x: 1, y: 2}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 2}
-  m_EdgeRadius: 0
 --- !u!50 &1741961503
 Rigidbody2D:
   serializedVersion: 5
@@ -19058,11 +19011,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1115279068621900400, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
       propertyPath: m_LocalScale.x
-      value: 79.84449
+      value: 70.25996
       objectReference: {fileID: 0}
     - target: {fileID: 1115279068621900400, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
       propertyPath: m_LocalScale.y
-      value: 66.85228
+      value: 46.569298
       objectReference: {fileID: 0}
     - target: {fileID: 1115279068621900400, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19074,7 +19027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1115279068621900400, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.9
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 1115279068621900400, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
       propertyPath: m_LocalRotation.w
@@ -19094,11 +19047,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1115279068621900400, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 72.3
+      value: 77.9
       objectReference: {fileID: 0}
     - target: {fileID: 1115279068621900400, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 227.3
+      value: 223.6
       objectReference: {fileID: 0}
     - target: {fileID: 1115279068621900400, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -19127,6 +19080,14 @@ PrefabInstance:
     - target: {fileID: 1509590005970107193, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523701489723356749, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.293
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523701489723356749, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3551143422125741012, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
       propertyPath: orthographic size
