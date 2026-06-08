@@ -3511,6 +3511,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 7654101418726796421, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
+      propertyPath: m_GravityScale
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 7783709135278434227, guid: c4abf52592ce46b4d82715f974c48332, type: 3}
       propertyPath: jumpForce
       value: 300
