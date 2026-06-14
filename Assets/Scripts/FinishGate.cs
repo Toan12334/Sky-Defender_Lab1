@@ -1,3 +1,9 @@
+/*Author :longnd
+ * Describe: Xử lý logic của cổng kiểm tra điều kiện hoàn thành màn chơi (FinishGate). 
+ * Khi người chơi (Player) chạm vào, script sẽ kiểm tra xem đã thu thập hết ngọc (GemCollect) chưa. 
+ * Nếu hết, kích hoạt trạng thái `isValidated = true` để cho phép qua màn thông qua DoorScripts.
+ * Date:20/05/2026
+*/
 using UnityEngine;
 
 public class FinishGate : MonoBehaviour

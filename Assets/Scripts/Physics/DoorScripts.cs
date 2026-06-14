@@ -1,3 +1,7 @@
+/*Author :longnd
+ * Describe: script cửa kiểm tra xem ăn hết gém chưa, sau khi ăn hết thì qua màn mới
+ * Date:03/06/2026
+*/
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
