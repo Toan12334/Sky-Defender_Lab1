@@ -1,4 +1,12 @@
-﻿using TMPro; // Sử dụng TextMeshPro
+﻿
+
+/*Author :Toandx
+ * Describe: Đây là file quản lý chưa các máu ,điểm ,nhân vật trừ máu khi va chạm 
+ * Date:11/06/2026
+*/
+
+
+using TMPro; // Sử dụng TextMeshPro
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
