@@ -1,4 +1,8 @@
 ﻿using UnityEngine;
+/*Author :Hungnd
+ * Describe: Day la file xu ly damage cua bay gai va coc go 
+ * Date:1/06/2026
+*/
 
 public class TrapDamage : MonoBehaviour
 {
