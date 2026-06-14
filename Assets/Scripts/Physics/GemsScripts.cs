@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/*Author :longnd
+ * Describe: xuay gem, kiểm tra player chạm gem chưa, sau khi chạm gem biến mất
+ * Date:23/05/2026
+*/
+using UnityEngine;
 
 public class GemCollect : MonoBehaviour
 {
@@ -21,7 +25,7 @@ public class GemCollect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Kiểm tra xem có phải Player chạm vào không (Nhớ đặt Tag "Player" cho nhân vật)
+        // Kiểm tra xem có phải Player chạm vào không 
         if (collision.CompareTag("Player"))
         {
             Collect();
@@ -42,11 +46,6 @@ public class GemCollect : MonoBehaviour
             Instantiate(effectPrefab, transform.position, Quaternion.identity);
         }
 
-        // 3. Phát âm thanh (Phát tại vị trí hiện tại để tránh việc Destroy làm mất âm thanh)
-        if (collectSound != null)
-        {
-            AudioSource.PlayClipAtPoint(collectSound, transform.position);
-        }
 
         // 4. Biến mất khỏi game
         Destroy(gameObject);
