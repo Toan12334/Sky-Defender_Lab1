@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿
+
+/*Author :Toandx
+ * Describe: day la file chua cac ham cho nut click
+ * Date:11/06/2026
+*/
+
+using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {

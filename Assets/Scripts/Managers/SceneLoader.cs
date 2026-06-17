@@ -1,5 +1,9 @@
 ﻿
 
+/*Author :Toandx
+ * Describe: Đây là file chưa các logic chuyển màn
+ * Date:11/06/2026
+*/
 
 using UnityEngine;
 using UnityEngine.SceneManagement;

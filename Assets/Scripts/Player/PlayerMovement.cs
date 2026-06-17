@@ -15,14 +15,14 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
 
-    // 🆕 THÊM VÀO: Khai báo biến Animator
+    //  THÊM VÀO: Khai báo biến Animator
     private Animator anim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // 🆕 THÊM VÀO: Lấy thành phần Animator từ nhân vật
+        //  THÊM VÀO: Lấy thành phần Animator từ nhân vật
         anim = GetComponent<Animator>();
     }
 
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
 
-        // 🆕 THÊM VÀO: Truyền trạng thái chạy sang Animator
+        //  THÊM VÀO: Truyền trạng thái chạy sang Animator
         // Nếu move khác 0 (tức là đang bấm nút đi) thì run = true, ngược lại run = false
         if (anim != null)
         {

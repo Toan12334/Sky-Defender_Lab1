@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿/*Author :Toandx
+ * Describe: Day la file xu ly khi vat roi xuống ,khi rơi xuống chúng nhân vật thì nhân vật sẽ mất máu
+ * Date:11/06/2026
+*/
+
+using UnityEngine;
 
 public class FallingSpike : MonoBehaviour
 {
@@ -8,6 +13,9 @@ public class FallingSpike : MonoBehaviour
 
     [Header("Cấu hình sát thương")]
     public int damageAmount = 25; // Số lượng máu sẽ trừ khi cọc đâm trúng player
+
+    [Header("Cấu hình âm thanh")]
+    public AudioClip hitSound; // Kéo file âm thanh va chạm vào đây từ bảng Inspector
 
     void Start()
     {
@@ -46,12 +54,25 @@ public class FallingSpike : MonoBehaviour
                 GameManager.Instance.TakeDamage(damageAmount);
             }
 
+            // Phát âm thanh tại vị trí va chạm trước khi đối tượng bị xóa
+            if (hitSound != null)
+            {
+                AudioSource.PlayClipAtPoint(hitSound, transform.position);
+            }
+
             // Xóa cái cọc gỗ này đi ngay lập tức sau khi trúng người để không bị đè và trừ máu tiếp
             Destroy(gameObject);
         }
         // 2. Nếu cọc rơi hụt và trúng đất (hoặc bất kỳ vật thể nào khác) thì cho biến mất sau 1 khoảng thời gian cho sạch scene
         else if (isFalling)
         {
+            // Phát âm thanh khi cọc rơi trúng đất (nếu bạn muốn, còn không thì có thể bỏ qua)
+            if (hitSound != null && !hasDealtDamage)
+            {
+                AudioSource.PlayClipAtPoint(hitSound, transform.position);
+                hasDealtDamage = true; // Đánh dấu để không phát lặp lại âm thanh đất lần nữa
+            }
+
             // Chờ 0.5 giây sau khi chạm đất rồi tự xóa cọc gỗ đi
             Destroy(gameObject, 0.5f);
         }

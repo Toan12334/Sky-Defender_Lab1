@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/*Author :Toandx
+ * Describe: khi dẫm lên hòn đá thì cọc sẽ rơi
+ * Date:11/06/2026
+*/
 public class StoneTrigger : MonoBehaviour
 {
     [Header("Kéo cọc gỗ muốn rơi vào đây")]
