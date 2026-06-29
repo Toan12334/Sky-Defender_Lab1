@@ -1,4 +1,4 @@
-﻿
+
 
 /*Author :Toandx
  * Describe: Đây là file quản lý chưa các máu ,điểm ,nhân vật trừ máu khi va chạm 
@@ -60,23 +60,36 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
+    private bool isGameOver = false;
+
     // Hàm trừ máu (Khi bị địch bắn trúng...)
     public void TakeDamage(int damage)
     {
+        if (isGameOver) return; // Nếu đã chết rồi thì không trừ máu hay gọi lại hàm thua nữa
+
         health -= damage;
         if (health <= 0)
         {
             health = 0;
+            isGameOver = true; // Đánh dấu đã chết
 
             // KHU VỰC SỬA: Thua game thì phải reset bộ nhớ về ban đầu để chơi lại không bị lỗi
             ResetStoredData();
 
-            SceneManager.LoadScene("GameOver"); // Thua game
+            // Chờ 2 giây rồi mới chuyển sang màn hình GameOver để kịp xem animation Die
+            Invoke("LoadGameOverScene", 2f);
+            
+            UpdateUI();
             return;
         }
 
         savedHealth = health; // KHU VỰC SỬA: Lưu lại vào bộ nhớ static ngay khi thay đổi
         UpdateUI();
+    }
+
+    private void LoadGameOverScene()
+    {
+        SceneManager.LoadScene("GameOver"); // Thua game
     }
 
     // Cập nhật chữ hiển thị lên màn hình

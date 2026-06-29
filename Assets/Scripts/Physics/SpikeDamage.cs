@@ -26,15 +26,15 @@ public class SpikeDamage : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            // 1. Xử lý trừ máu
-            if (GameManager.Instance != null)
+            // 1. Xử lý trừ máu và chạy animation
+            PlayerController player = collision.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                player.TakeDamage(damageAmount);
+            }
+            else if (GameManager.Instance != null)
             {
                 GameManager.Instance.TakeDamage(damageAmount);
-                Debug.Log("Đã trừ " + damageAmount + " máu!");
-            }
-            else
-            {
-                Debug.LogWarning("GameManager.Instance đang bị null!");
             }
 
             // 2. Xử lý phát âm thanh va chạm
