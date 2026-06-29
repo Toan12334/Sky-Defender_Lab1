@@ -34,20 +34,25 @@ public class GemCollect : MonoBehaviour
 
     void Collect()
     {
-        // 1. Cộng điểm thông qua GameManager Instance
+        // 1. Cộng điểm
         if (GameManager.Instance != null)
         {
             GameManager.Instance.AddScore(scoreValue);
         }
 
-        // 2. Tạo hiệu ứng Particle (nếu có)
+        // 2. Phát âm thanh tại vị trí Gem trước khi nó biến mất
+        if (collectSound != null)
+        {
+            AudioSource.PlayClipAtPoint(collectSound, transform.position);
+        }
+
+        // 3. Tạo hiệu ứng Particle
         if (effectPrefab != null)
         {
             Instantiate(effectPrefab, transform.position, Quaternion.identity);
         }
 
-
-        // 4. Biến mất khỏi game
+        // 4. Biến mất
         Destroy(gameObject);
     }
 }
