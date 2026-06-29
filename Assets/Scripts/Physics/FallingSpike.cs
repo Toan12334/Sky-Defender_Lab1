@@ -1,4 +1,4 @@
-﻿/*Author :Toandx
+/*Author :Toandx
  * Describe: Day la file xu ly khi vat roi xuống ,khi rơi xuống chúng nhân vật thì nhân vật sẽ mất máu
  * Date:11/06/2026
 */
@@ -48,8 +48,13 @@ public class FallingSpike : MonoBehaviour
         {
             hasDealtDamage = true; // Đánh dấu đã gây sát thương xong
 
-            // Gọi đến GameManager thông qua Instance để trừ máu nhân vật
-            if (GameManager.Instance != null)
+            // Lấy component PlayerController của nhân vật để gọi hàm trừ máu + chạy animation
+            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                player.TakeDamage(damageAmount);
+            }
+            else if (GameManager.Instance != null)
             {
                 GameManager.Instance.TakeDamage(damageAmount);
             }
