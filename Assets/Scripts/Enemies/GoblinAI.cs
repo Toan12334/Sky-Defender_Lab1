@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+// Gọi namespace hệ thống máu của bạn để sử dụng được class Health
+using ThomasDev.HealthDamageSystem;
 
 public class GoblinAI : MonoBehaviour
 {
@@ -17,6 +19,11 @@ public class GoblinAI : MonoBehaviour
     public float attackRange = 1.2f;    // Khoảng cách để vung kiếm chém
     public LayerMask playerLayer;      // Thiết lập Layer là "Player" cho nhân vật chính
     private Transform playerTransform;
+
+    [Header("Cấu Hình Sát Thương")]
+    public float damageAmount = 5f;    // Số máu Player bị trừ (đồng bộ kiểu float)
+    public float attackRate = 1f;      // Tốc độ đánh (1 giây chém 1 lần)
+    private float nextAttackTime = 0f; // Bộ đếm thời gian hồi chiêu
 
     [Header("Thành Phần Hệ Thống")]
     private Rigidbody2D rb;
@@ -55,17 +62,13 @@ public class GoblinAI : MonoBehaviour
 
     void PatrolBehavior()
     {
-        // Chuyển sang hoạt ảnh đi bộ đúng với tên trong Animator của bạn
         ChangeAnimationState("Goblin_Walking");
 
-        // Di chuyển hướng tới điểm target
         Vector2 direction = (targetPoint.position - transform.position).normalized;
         rb.linearVelocity = new Vector2(direction.x * walkSpeed, rb.linearVelocity.y);
 
-        // Thay đổi hướng mặt dựa vào di chuyển
         FlipTowards(targetPoint.position);
 
-        // Nếu đến rất gần điểm đích thì đổi điểm quay lại
         if (Vector2.Distance(transform.position, targetPoint.position) < 0.5f)
         {
             targetPoint = (targetPoint == pointA) ? pointB : pointA;
@@ -76,16 +79,13 @@ public class GoblinAI : MonoBehaviour
     {
         if (playerTransform == null) return;
 
-        // Chuyển sang hoạt ảnh chạy đúng với tên trong Animator của bạn
         ChangeAnimationState("Goblin_Running");
 
-        // Đuổi theo người chơi nhanh hơn
         Vector2 direction = (playerTransform.position - transform.position).normalized;
         rb.linearVelocity = new Vector2(direction.x * runSpeed, rb.linearVelocity.y);
 
         FlipTowards(playerTransform.position);
 
-        // Nếu người chơi áp sát vùng tấn công thì chuyển trạng thái
         if (Vector2.Distance(transform.position, playerTransform.position) <= attackRange)
         {
             currentState = State.Attack;
@@ -97,12 +97,28 @@ public class GoblinAI : MonoBehaviour
         // Dừng di chuyển khi tấn công
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
 
-        // Kích hoạt hoạt ảnh tấn công đúng với tên trong Animator của bạn
+        // Kích hoạt hoạt ảnh tấn công
         ChangeAnimationState("Goblin_Attack");
 
         if (playerTransform != null)
         {
             FlipTowards(playerTransform.position);
+
+            // XỬ LÝ GÂY SÁT THƯƠNG: Kiểm tra nếu đã hết thời gian hồi chiêu chém
+            if (Time.time >= nextAttackTime)
+            {
+                // Sử dụng OverlapCircle ngay tại tầm đánh để quét tìm chính xác Player trong phạm vi chém
+                Collider2D hitPlayer = Physics2D.OverlapCircle(transform.position, attackRange, playerLayer);
+
+                if (hitPlayer != null)
+                {
+                    // Gọi hàm xử lý trừ máu
+                    DealDamageToPlayer(hitPlayer.gameObject);
+                }
+
+                // Đặt thời gian hồi chiêu cho phát chém tiếp theo
+                nextAttackTime = Time.time + attackRate;
+            }
 
             // Nếu người chơi chạy thoát ra khỏi tầm đánh nhưng vẫn trong tầm nhìn thì đuổi tiếp
             if (Vector2.Distance(transform.position, playerTransform.position) > attackRange)
@@ -112,22 +128,34 @@ public class GoblinAI : MonoBehaviour
         }
     }
 
-    // --- HÀM ĐỔI HOẠT ẢNH BẰNG TÊN (TRÁNH LỖI LẶP KHUNG HÌNH) ---
+    // --- HÀM TÌM SCRIPT HEALTH VÀ TRỪ MÁU ---
+    void DealDamageToPlayer(GameObject playerObj)
+    {
+        // Tìm component Health trực tiếp từ đối tượng quét trúng
+        Health playerHealth = playerObj.GetComponent<Health>();
+
+        if (playerHealth != null)
+        {
+            // Gọi hàm TakeDamage có sẵn trong script Health của bạn
+            playerHealth.TakeDamage(damageAmount);
+            Debug.Log($"<color=red>[GOBLIN ATTACK]</color> Chém trúng! Player bị trừ {damageAmount} máu. Máu hiện tại: {playerHealth.CurrentHealth}");
+        }
+        else
+        {
+            Debug.LogWarning("Tìm thấy đối tượng ở Layer Player nhưng không có component 'Health' trên đối tượng đó!");
+        }
+    }
+
+    // --- HÀM ĐỔI HOẠT ẢNH BẰNG TÊN ---
     void ChangeAnimationState(string newState)
     {
-        // Nếu animation này đang chạy rồi thì không gọi lại nữa (tránh bị đứng hình ở frame đầu tiên)
         if (currentAnimState == newState) return;
-
-        // Phát animation mới với hiệu ứng chuyển đổi mượt mà (0.1 giây)
         anim.CrossFade(newState, 0.1f);
-
-        // Cập nhật trạng thái hiện tại
         currentAnimState = newState;
     }
 
     // --- HÀM BỔ TRỢ ---
 
-    // Quét tìm xem Player có nằm trong tầm ngắm không
     void CheckForPlayer()
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, detectionRange, playerLayer);
