@@ -372,9 +372,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dee1e5cbdc7bd04296271d1326e446d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 1
+  moveSpeed: 20
   jumpForce: 30
-  dashForce: 500
+  dashForce: 150
   dashDuration: 0.3
   dashCooldown: 1
   gravityNormal: 2
@@ -382,6 +382,13 @@ MonoBehaviour:
   gravityShortJump: 8
   dashKey: 304
   shieldKey: 101
+  attackRange: 1.2
+  attackDamage: 10
+  rightAttackDamageMultiplier: 1.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  attackPoint: {fileID: 0}
   groundCheck: {fileID: 1578424846537010932}
   groundCheckRadius: 0.2
   groundLayer:
