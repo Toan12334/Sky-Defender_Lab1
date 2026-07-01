@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI; // BẮT BUỘC phải có dòng này để điều khiển được Slider thanh máu
+using UnityEngine.UI;
+using ThomasDev.HealthDamageSystem; // BẮT BUỘC: Thêm dòng này để gọi được script Health của Nhân vật
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -7,15 +8,25 @@ public class EnemyHealth : MonoBehaviour
     public float maxHealth = 100f;
     private float currentHealth;
 
+    [Header("Vampire Settings")]
+    [Tooltip("Số máu người chơi nhận được khi tiêu diệt con quái này")]
+    [SerializeField] private float healReward = 20f;
+
     [Header("UI Reference")]
-    public Slider healthSlider; // Nơi kéo thả thanh Slider vào
+    public Slider healthSlider;
+
+    // ========================================================
+    // THÊM MỚI: Biến để kéo thả cánh cửa từ Hierarchy vào
+    // ========================================================
+    [Header("Exit Door Settings")]
+    [Tooltip("Kéo thả GameObject exit_door vào đây (Chỉ áp dụng cho con Rồng/Quái cuối)")]
+    public GameObject exitDoor;
+    // ========================================================
 
     void Start()
     {
-        // Ban đầu lượng máu hiện tại bằng máu tối đa
         currentHealth = maxHealth;
 
-        // Thiết lập các giá trị ban đầu cho thanh Slider
         if (healthSlider != null)
         {
             healthSlider.maxValue = maxHealth;
@@ -23,21 +34,16 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    // Hàm này sẽ được gọi từ code của Player (khi Player chém trúng con quái này)
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-
-        // Đảm bảo lượng máu không bị âm hoặc vượt quá máu tối đa
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        // Cập nhật giá trị hiển thị lên thanh máu
         if (healthSlider != null)
         {
             healthSlider.value = currentHealth;
         }
 
-        // Kiểm tra nếu hết máu thì chết
         if (currentHealth <= 0)
         {
             Die();
@@ -46,8 +52,36 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-        // Xử lý khi quái chết (ở đây tạm thời là xóa con quái khỏi map)
         Debug.Log(gameObject.name + " đã bị tiêu diệt!");
+
+        // --- ĐOẠN CODE THÊM VÀO ĐỂ HỒI MÁU CHO PLAYER ---
+        // 1. Tìm đối tượng có Tag là "Player" trong màn chơi
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            // 2. Lấy thành phần Health (của ThomasDev) gắn trên Player
+            Health playerHealth = player.GetComponent<Health>();
+
+            if (playerHealth != null)
+            {
+                // 3. Gọi hàm hồi máu và truyền số máu thưởng vào
+                playerHealth.Heal(healReward);
+                Debug.Log("Đã hồi " + healReward + " HP cho người chơi!");
+            }
+        }
+        // ------------------------------------------------
+
+        // ========================================================
+        // THÊM MỚI: Kích hoạt cánh cửa xuất hiện khi quái chết
+        // ========================================================
+        if (exitDoor != null)
+        {
+            exitDoor.SetActive(true);
+            Debug.Log("Cánh cửa " + exitDoor.name + " đã hiện lên!");
+        }
+        // ========================================================
+
         Destroy(gameObject);
     }
 }
