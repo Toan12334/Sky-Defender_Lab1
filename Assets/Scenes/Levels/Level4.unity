@@ -2592,6 +2592,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  damageAmount: 5
+  attackRate: 1
 --- !u!95 &799171493
 Animator:
   serializedVersion: 7
@@ -2668,6 +2670,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  damageAmount: 5
+  attackRate: 1
 --- !u!50 &846783901
 Rigidbody2D:
   serializedVersion: 5
@@ -2823,11 +2827,13 @@ MonoBehaviour:
   runSpeed: 4.5
   pointA: {fileID: 938593525}
   pointB: {fileID: 766611213}
-  detectionRange: 17
+  detectionRange: 40
   attackRange: 12
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  damageAmount: 5
+  attackRate: 1
 --- !u!95 &863160616
 Animator:
   serializedVersion: 7
@@ -3513,11 +3519,13 @@ MonoBehaviour:
   runSpeed: 4.5
   pointA: {fileID: 1284322181}
   pointB: {fileID: 1525593046}
-  detectionRange: 17
+  detectionRange: 15
   attackRange: 12
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  damageAmount: 5
+  attackRate: 1
 --- !u!95 &1326338985
 Animator:
   serializedVersion: 7
@@ -4946,11 +4954,13 @@ MonoBehaviour:
   runSpeed: 4.5
   pointA: {fileID: 1945550021}
   pointB: {fileID: 148353150}
-  detectionRange: 17
+  detectionRange: 35
   attackRange: 12
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  damageAmount: 5
+  attackRate: 1
 --- !u!95 &1587252647
 Animator:
   serializedVersion: 7
