@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.EventSystems; // <--- THÊM DÒNG NÀY
 
 public class PlayerController : MonoBehaviour
 {
@@ -188,12 +188,19 @@ public class PlayerController : MonoBehaviour
 
     private void HandleCombatInputs()
     {
+        // --- THÊM ĐOẠN NÀY VÀO ĐẦU HÀM ---
+        // Nếu chuột đang trỏ vào bất kỳ nút UI nào, thoát ra luôn và không chém nữa
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+        // ---------------------------------
+
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("attackLeft");
             PerformAttack(-1f, attackDamage);
         }
-
 
         if (Input.GetMouseButtonDown(1))
         {
