@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿
+
+/*Author :Toandx
+ * Describe: day la file chua cac ham cho nut click
+ * Date:11/06/2026
+*/
+
+using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
@@ -14,13 +21,13 @@ public class MenuManager : MonoBehaviour
     // Gán hàm này vào Event OnClick của nút Start
     public void OnClickStart()
     {
-        sceneLoader.LoadSceneByName("Gameplay");
+        sceneLoader.LoadSceneByName("Level4");
     }
 
     // Gán hàm này vào nút Restart
     public void OnClickRestart()
     {
-        sceneLoader.LoadSceneByName("Gameplay");
+        sceneLoader.LoadSceneByName("Level4");
     }
 
     // Gán hàm này vào nút MainMenu
