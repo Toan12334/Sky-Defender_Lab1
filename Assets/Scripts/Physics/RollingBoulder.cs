@@ -40,7 +40,11 @@ public class RollingBoulder : MonoBehaviour
             PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
             if (player != null)
             {
-                player.Die(); // Nhân vật chết luôn tại chỗ
+                // Thay vì gọi trực tiếp Die() đang bị private, ta trừ thẳng lượng máu lớn (bằng maxHealth)
+                // Hàm TakeDamage bên PlayerHealth sẽ tự động kích hoạt animation takeDamage, đưa máu về 0 và tự gọi Die() luôn!
+                player.TakeDamage(player.maxHealth);
+
+                Debug.Log("Hòn đá đã đè bẹp Player!");
             }
         }
     }
