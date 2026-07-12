@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/MainMenu.unity
     guid: d06e09661b876e444927bf560c1ec017
   - enabled: 1
-    path: Assets/Scenes/Menus/Victory.unity
-    guid: 699fe9c1349454042a1a484bd08220ab
+    path: Assets/Scenes/Levels/GamePlay 3.unity
+    guid: 7de131a276e020e44b8abe88cefa50ca
   - enabled: 1
     path: Assets/Scenes/Levels/Level4.unity
     guid: 7f57c991c1faeb546a537984af50979c
+  - enabled: 1
+    path: Assets/Scenes/Menus/Victory.unity
+    guid: 699fe9c1349454042a1a484bd08220ab
   - enabled: 1
     path: Assets/Scenes/Menus/GameOver.unity
     guid: 0584f640ff7e32646ac268bc14db46e0
