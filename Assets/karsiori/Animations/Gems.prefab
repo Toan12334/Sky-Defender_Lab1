@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 509.1, y: 197.3, z: 0}
-  m_LocalScale: {x: 54.636803, y: 52.57247, z: 2.727721}
+  m_LocalScale: {x: 8, y: 8, z: 2.727721}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -174,6 +174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae5169111f3cb4449db71873f848ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GemCollect
-  scoreValue: 10
   collectSound: {fileID: 0}
   effectPrefab: {fileID: 0}
+  scoreValue: 10
