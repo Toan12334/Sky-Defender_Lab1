@@ -43,42 +43,37 @@ public class FallingSpike : MonoBehaviour
     // =========================================================
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 1. Nếu cọc rơi trúng vật thể có Tag là "Player" và chưa gây sát thương lần nào
+        // 1. Trường hợp: Cọc rơi trúng nhân vật (Player) và chưa gây sát thương lần nào
         if (collision.gameObject.CompareTag("Player") && !hasDealtDamage)
         {
             hasDealtDamage = true; // Đánh dấu đã gây sát thương xong
 
-            // Lấy component PlayerController của nhân vật để gọi hàm trừ máu + chạy animation
+            // Gọi hàm trừ máu qua PlayerController để kích hoạt mạch logic đồng bộ
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             if (player != null)
             {
                 player.TakeDamage(damageAmount);
             }
-            else if (GameManager.Instance != null)
-            {
-                GameManager.Instance.TakeDamage(damageAmount);
-            }
 
-            // Phát âm thanh tại vị trí va chạm trước khi đối tượng bị xóa
+            // Phát âm thanh tại vị trí va chạm
             if (hitSound != null)
             {
                 AudioSource.PlayClipAtPoint(hitSound, transform.position);
             }
 
-            // Xóa cái cọc gỗ này đi ngay lập tức sau khi trúng người để không bị đè và trừ máu tiếp
+            // Xóa cái cọc gỗ này đi ngay lập tức sau khi trúng người
             Destroy(gameObject);
         }
-        // 2. Nếu cọc rơi hụt và trúng đất (hoặc bất kỳ vật thể nào khác) thì cho biến mất sau 1 khoảng thời gian cho sạch scene
-        else if (isFalling)
+        // 2. Trường hợp: Cọc rơi hụt trúng mặt đất (hoặc vật thể môi trường khác)
+        else if (isFalling && !collision.gameObject.CompareTag("Player"))
         {
-            // Phát âm thanh khi cọc rơi trúng đất (nếu bạn muốn, còn không thì có thể bỏ qua)
             if (hitSound != null && !hasDealtDamage)
             {
                 AudioSource.PlayClipAtPoint(hitSound, transform.position);
-                hasDealtDamage = true; // Đánh dấu để không phát lặp lại âm thanh đất lần nữa
+                hasDealtDamage = true; // Khóa lại để tránh kích hoạt âm thanh nhiều lần
             }
 
-            // Chờ 0.5 giây sau khi chạm đất rồi tự xóa cọc gỗ đi
+            // Chờ 0.5 giây sau khi chạm đất rồi tự xóa cọc gỗ đi cho sạch Scene
             Destroy(gameObject, 0.5f);
         }
     }
